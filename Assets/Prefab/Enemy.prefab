@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ed32ff0d545c34fa0c8c868fee8e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 1071579066247353887}
+  spriteRenderer: {fileID: 1071579066247353887}
   rb: {fileID: 4100959514795162211}
   playerMask:
     serializedVersion: 2

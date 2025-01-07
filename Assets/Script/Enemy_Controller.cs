@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy_Controller : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Renderer _renderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask playerMask;
     [Header("Attribute")]
@@ -26,7 +26,7 @@ public class Enemy_Controller : MonoBehaviour
     private void ApplyTag()
     {    
         gameObject.tag = "Tagged";
-        _renderer.material.color = Color.yellow;
+        spriteRenderer.color = Color.yellow;
     }
     
     public void ApplyForce(Vector2 direction)

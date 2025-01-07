@@ -70,7 +70,8 @@ public class Player_Controller : MonoBehaviour
             else JumpLeft--;
             rb.linearVelocityY = 0;
             rb.AddForceY(Jump_Power, ForceMode2D.Impulse);
-            rb.angularVelocity = (rb.linearVelocityX == 0) ? rb.angularVelocity : -rb.linearVelocityX * spinFreq;
+            float spinDirection = (rb.linearVelocityX == 0) ? rb.angularVelocity : -rb.linearVelocityX;
+            rb.angularVelocity = spinDirection * spinFreq;
         }
     }
 }   
