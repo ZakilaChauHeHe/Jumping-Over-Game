@@ -28,7 +28,7 @@ public class Player_Controller : MonoBehaviour
     {
         UpdateGrounded();
         if (onGround) ResetOrintation();
-        rb.linearVelocity = new Vector2(horizontal * speed,rb.linearVelocityY);
+        rb.linearVelocityX = horizontal * speed;
     }
 
     public void OnDrawGizmosSelected()
@@ -70,7 +70,6 @@ public class Player_Controller : MonoBehaviour
             if (onGround) JumpLeft = AirJump_Charge;
             else JumpLeft--;
             rb.linearVelocityY = 0;
-            Debug.Log(Jump_Power * math.pow(JumpDampRatio, AirJump_Charge - JumpLeft));
             rb.AddForceY(Jump_Power * math.pow(JumpDampRatio,AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
             rb.angularVelocity = spinFreq;
             float spinDirection = (rb.linearVelocityX == 0) ? rb.angularVelocity : -rb.linearVelocityX;
