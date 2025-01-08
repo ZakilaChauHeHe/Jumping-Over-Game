@@ -14,6 +14,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private float speed = 6f;
     [SerializeField] private float Jump_Power = 1f;
     [SerializeField] private int AirJump_Charge = 1;
+    [SerializeField] private float JumpDampRatio = .75f;
     [SerializeField] private float spinFreq = 1;
 
 
@@ -69,7 +70,9 @@ public class Player_Controller : MonoBehaviour
             if (onGround) JumpLeft = AirJump_Charge;
             else JumpLeft--;
             rb.linearVelocityY = 0;
-            rb.AddForceY(Jump_Power, ForceMode2D.Impulse);
+            Debug.Log(Jump_Power * math.pow(JumpDampRatio, AirJump_Charge - JumpLeft));
+            rb.AddForceY(Jump_Power * math.pow(JumpDampRatio,AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
+            rb.angularVelocity = spinFreq;
             float spinDirection = (rb.linearVelocityX == 0) ? rb.angularVelocity : -rb.linearVelocityX;
             rb.angularVelocity = spinDirection * spinFreq;
         }
