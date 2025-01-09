@@ -1194,8 +1194,8 @@ MonoBehaviour:
   GameoverPanel: {fileID: 2053155960}
   TimeBetweenSpawn: 1
   score: 0
-  GodMode: 1
-  Disable_Spawning: 1
+  GodMode: 0
+  Disable_Spawning: 0
 --- !u!1001 &3472700659751653329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1248,6 +1248,10 @@ PrefabInstance:
       propertyPath: game_manager
       value: 
       objectReference: {fileID: 2113372723}
+    - target: {fileID: 5027792105024691964, guid: 2fe9c03052d1d6447b8e1110f723a9f2, type: 3}
+      propertyPath: AirJump_Charge
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5628382016156552208, guid: 2fe9c03052d1d6447b8e1110f723a9f2, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1287,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4879139238651838406, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.65
+      value: -8.65
       objectReference: {fileID: 0}
     - target: {fileID: 4879139238651838406, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
       propertyPath: m_LocalPosition.z
