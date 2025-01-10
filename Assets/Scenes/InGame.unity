@@ -1208,7 +1208,7 @@ MonoBehaviour:
   GameoverPanel: {fileID: 2053155960}
   TimeBetweenSpawn: 1
   score: 0
-  GodMode: 1
+  GodMode: 0
   Disable_Spawning: 0
 --- !u!1001 &3472700659751653329
 PrefabInstance:

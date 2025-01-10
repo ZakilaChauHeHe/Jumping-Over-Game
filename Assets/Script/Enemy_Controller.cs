@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework.Internal;
+using Unity.Android.Gradle.Manifest;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -36,10 +37,12 @@ public class Enemy_Controller : MonoBehaviour
 
     public void OnDestroy()
     {
+        if (!(UnityEngine.Application.isPlaying)) return;
         Camera.main.GetComponent<ShakeEffect>().FireEffect();
         GameObject particle = Instantiate(deathParticlePrefab);
         ParticleSystem.MainModule main = particle.GetComponent<ParticleSystem>().main;
         main.startColor = spriteRenderer.color;
         particle.transform.position = transform.position;
+        Destroy(gameObject);
     }
 }   
