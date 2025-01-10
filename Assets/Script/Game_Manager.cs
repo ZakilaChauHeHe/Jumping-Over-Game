@@ -72,7 +72,7 @@ public class Game_Manager : MonoBehaviour
         foreach (GameObject taggedObject in taggedObjects)
         {
             UpdateScore();
-            Destroy(taggedObject);
+            taggedObject.GetComponent<Enemy_Controller>()?.FireDestroy();
         }
     }
     private void UpdateScore()

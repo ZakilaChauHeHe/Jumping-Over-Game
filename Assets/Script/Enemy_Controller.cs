@@ -35,9 +35,8 @@ public class Enemy_Controller : MonoBehaviour
         rb.AddForce(direction * speed);
     }
 
-    public void OnDestroy()
+    public void FireDestroy()
     {
-        if (!(UnityEngine.Application.isPlaying)) return;
         Camera.main.GetComponent<ShakeEffect>().FireEffect();
         GameObject particle = Instantiate(deathParticlePrefab);
         ParticleSystem.MainModule main = particle.GetComponent<ParticleSystem>().main;
