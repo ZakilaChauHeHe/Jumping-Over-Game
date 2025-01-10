@@ -31,7 +31,6 @@ public class Enemy_Controller : MonoBehaviour
     
     public void ApplyForce(Vector2 direction)
     {
-        Debug.Log(transform.lossyScale);
         rb.AddForce(direction * speed);
     }
 
