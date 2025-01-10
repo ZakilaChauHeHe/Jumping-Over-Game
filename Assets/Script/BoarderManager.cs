@@ -12,7 +12,8 @@ public class BoarderManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        TopRightScreen = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        TopRightScreen = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.rect.width, Camera.main.rect.height));
+        Debug.Log(TopRightScreen);
         GameObject TopBoarder = Instantiate(BoarderPrefab, new Vector2(0, TopRightScreen.y + BoarderWidth / 2), Quaternion.identity);
         TopBoarder.transform.localScale = new Vector3(TopRightScreen.x * 2, BoarderWidth, 1);
         GameObject LeftBoarder = Instantiate(BoarderPrefab, new Vector2(-(TopRightScreen.x + BoarderWidth / 2), 0), Quaternion.identity);
