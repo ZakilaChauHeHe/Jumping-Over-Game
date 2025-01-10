@@ -42,7 +42,7 @@ public class Game_Manager : MonoBehaviour
             CleanEnemy();
         }
     }
-        
+
     private void Handle_player_Died(GameObject _player)
     {
        _player.SetActive(false);
