@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9093434891482914086}
   - component: {fileID: 4343141125793024662}
   m_Layer: 3
-  m_Name: Ground
+  m_Name: Boarder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

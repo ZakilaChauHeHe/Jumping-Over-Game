@@ -17,12 +17,15 @@ public class Game_Manager : MonoBehaviour
     public int score = 0;
     [SerializeField] private bool GodMode = false;
     [SerializeField] private bool Disable_Spawning = false;
+
     public Action<GameObject> player_Died;
     private float last_Spawn;
+    private Vector3 TopRightScreen;
 
     private void Start()    
     {
         last_Spawn = Time.time;
+        TopRightScreen = TopRightScreen = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         if (!GodMode) player_Died += Handle_player_Died;
 
     }
@@ -55,7 +58,7 @@ public class Game_Manager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector3 spawnPos = new(UnityEngine.Random.value*3,8.3f,0);
+        Vector3 spawnPos = new(UnityEngine.Random.value*3, TopRightScreen.y, 0);
         GameObject enemy = Instantiate(ememyPrefab, spawnPos, Quaternion.identity);
         Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
 
