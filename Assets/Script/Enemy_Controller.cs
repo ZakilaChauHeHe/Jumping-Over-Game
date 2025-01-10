@@ -1,6 +1,5 @@
 using System;
 using NUnit.Framework.Internal;
-using Unity.Android.Gradle.Manifest;
 using Unity.Mathematics;
 using UnityEngine;
 
