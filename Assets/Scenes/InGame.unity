@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &46117273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4392551592358256095, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
+  m_PrefabInstance: {fileID: 5395349039281923950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &56819684
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +335,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoarderPrefab: {fileID: 4392551592358256095, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
   BoarderWidth: 1
+  BoarderGround: {fileID: 46117273}
+  WidthRatio: 9
+  HeightRatio: 16
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +350,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -474,20 +481,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &519420034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61abb4a4f770dc43a4d94c852467cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WidthRatio: 9
-  HeightRatio: 16
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 130.05031}
+  m_AnchoredPosition: {x: 4, y: 130}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1517383178

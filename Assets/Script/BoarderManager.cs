@@ -1,25 +1,39 @@
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class BoarderManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject BoarderPrefab;
+    [SerializeField] private GameObject GameBoarder;
     [SerializeField] private float BoarderWidth = 1f;
-
-    private Vector3 TopRightScreen;
+    [SerializeField] private float WidthRatio = 9f;
+    [SerializeField] private float HeightRatio = 16f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        TopRightScreen = Camera.main.ScreenToWorldPoint(new Vector2(Camera.main.rect.width, Camera.main.rect.height));
-        Debug.Log(TopRightScreen);
-        GameObject TopBoarder = Instantiate(BoarderPrefab, new Vector2(0, TopRightScreen.y + BoarderWidth / 2), Quaternion.identity);
-        TopBoarder.transform.localScale = new Vector3(TopRightScreen.x * 2, BoarderWidth, 1);
-        GameObject LeftBoarder = Instantiate(BoarderPrefab, new Vector2(-(TopRightScreen.x + BoarderWidth / 2), 0), Quaternion.identity);
-        LeftBoarder.transform.localScale = new Vector3(BoarderWidth, TopRightScreen.y * 2, 1);
-        GameObject RightBoarder = Instantiate(BoarderPrefab, new Vector2(TopRightScreen.x + BoarderWidth / 2, 0), Quaternion.identity);
-        RightBoarder.transform.localScale = new Vector3(BoarderWidth, TopRightScreen.y * 2, 1);
-    }
 
+
+        float TargetRatio = WidthRatio / HeightRatio;
+        float ScreenRatio = (float) Screen.width / Screen.height;
+        float ChangeRatio = TargetRatio/ScreenRatio;
+        Debug.Log(new Vector2(Screen.width, Screen.height));
+        Debug.Log(new Vector3(TargetRatio,ScreenRatio, ChangeRatio));
+        Vector3 TRCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width,Screen.height));
+        Vector3 TopPosition = new(0, TRCorner.y * math.min(1,1/ChangeRatio) + BoarderWidth / 2, 0);
+        Vector3 RightPosition = new(TRCorner.x * math.min(1, ChangeRatio) + BoarderWidth / 2, 0, 0);
+        MakeBoarder("TopBoarder",TopPosition, BoarderWidth, TRCorner.x *2);
+        MakeBoarder("RightBoarder", RightPosition, TRCorner.y * 2, BoarderWidth);
+        MakeBoarder("LeftBoarder", -RightPosition, TRCorner.y * 2, BoarderWidth);
+    }
+    void MakeBoarder(string name, Vector3 position, float length, float width)
+    {
+        GameObject newBoarder = Instantiate(BoarderPrefab, position, Quaternion.identity, GameBoarder.transform);
+        newBoarder.name = name;
+        newBoarder.transform.localScale = new Vector3(width, length, 1);
+    }
 }
