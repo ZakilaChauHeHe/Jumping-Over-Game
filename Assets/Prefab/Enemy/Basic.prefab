@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4078851250846570980}
   - component: {fileID: 1071579066247353887}
   - component: {fileID: 890229178309273305}
+  - component: {fileID: 5780090708121010208}
   - component: {fileID: 6337227293559748742}
   - component: {fileID: 4100959514795162211}
   m_Layer: 6
@@ -115,6 +116,20 @@ MonoBehaviour:
   OnWallCollide:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5780090708121010208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753170793687633465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f329d924fa9cb40b6fcfb23c7b6134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyController: {fileID: 890229178309273305}
+  rb: {fileID: 4100959514795162211}
 --- !u!58 &6337227293559748742
 CircleCollider2D:
   m_ObjectHideFlags: 0

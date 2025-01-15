@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player_Controller : MonoBehaviour
@@ -11,12 +12,14 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private LayerMask EnemyMask;
     [SerializeField] private float GroundCheckCastDistance = .7f;
     [Header("Attributes")]
+    public int heart = 3;
     [SerializeField] private float speed = 6f;
     [SerializeField] private float Jump_Power = 1f;
     [SerializeField] private int AirJump_Charge = 1;
     [SerializeField] private float JumpDampRatio = .75f;
     [SerializeField] private float spinFreq = 1;
-
+    [Header("Event")]
+    public UnityEvent HeartLoss;
 
     [HideInInspector] public bool onGround = false;
     private float horizontal;
@@ -41,7 +44,12 @@ public class Player_Controller : MonoBehaviour
     {
         if((1 << collision.gameObject.layer) == EnemyMask.value) // Mask is 2^(layer index) => 1<<(items layer) will check if the layer is the mask
         {
-            game_manager.player_Died?.Invoke(gameObject);
+            heart--;
+            HeartLoss.Invoke();
+            if(heart <= 0)
+            {
+                game_manager.player_Died?.Invoke(gameObject);
+            }
         }
     }
 
