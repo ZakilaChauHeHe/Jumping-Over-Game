@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6337227293559748742}
   - component: {fileID: 4100959514795162211}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,13 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 128
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 8
   speed: 250
+  OnWallCollide:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!58 &6337227293559748742
 CircleCollider2D:
   m_ObjectHideFlags: 0

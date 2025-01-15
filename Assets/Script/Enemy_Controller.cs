@@ -2,6 +2,7 @@ using System;
 using NUnit.Framework.Internal;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy_Controller : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject deathParticlePrefab;
     [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask GroundMask;
     [Header("Attribute")]
     public float speed = 5f;
+    [Header("Special Effect")]
+    public UnityEvent OnWallCollide;
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +23,14 @@ public class Enemy_Controller : MonoBehaviour
         if(hit2D.collider != null)
         {
             ApplyTag();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (GroundMask.value == (1 << collision.collider.gameObject.layer))
+        {
+            OnWallCollide.Invoke();
         }
     }
 

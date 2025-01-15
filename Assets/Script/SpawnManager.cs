@@ -1,5 +1,15 @@
 using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
+
+[System.Serializable]
+public class SpawnEntry
+{
+    public GameObject Prefab;
+    public int weight;
+}
+
 
 public class SpawnManager : MonoBehaviour
 {
@@ -8,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Game_Manager GameManager;
     [SerializeField] private GameObject GameBoarder;
-    [SerializeField] private GameObject ememyPrefab;
+    [SerializeField] private List<SpawnEntry> SpawnTable;
     [SerializeField] private GameObject SpawnObject;
     [SerializeField] private float TimeBetweenSpawn = 1f;
 
@@ -34,7 +44,13 @@ public class SpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector3 spawnPos = new(UnityEngine.Random.value * 3, TopBoarder.position.y - TopBoarder.lossyScale.y, 0);
-        GameObject enemy = Instantiate(ememyPrefab, spawnPos, Quaternion.identity, SpawnObject.transform);
+        int total_Weight = 0;
+        foreach(SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
+
+        int randomIndex = UnityEngine.Random.Range(0, total_Weight);
+        randomIndex %= SpawnTable.Count;
+        Debug.Log(new Vector2(randomIndex,total_Weight));
+        GameObject enemy = Instantiate(SpawnTable[randomIndex].Prefab, spawnPos, Quaternion.identity, SpawnObject.transform);
         Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
 
         Vector3 downwardDirection = UnityEngine.Random.insideUnitCircle.normalized;

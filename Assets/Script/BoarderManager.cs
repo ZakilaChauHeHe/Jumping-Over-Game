@@ -21,8 +21,6 @@ public class BoarderManager : MonoBehaviour
         float TargetRatio = WidthRatio / HeightRatio;
         float ScreenRatio = (float) Screen.width / Screen.height;
         float ChangeRatio = TargetRatio/ScreenRatio;
-        Debug.Log(new Vector2(Screen.width, Screen.height));
-        Debug.Log(new Vector3(TargetRatio,ScreenRatio, ChangeRatio));
         Vector3 TRCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width,Screen.height));
         Vector3 TopPosition = new(0, TRCorner.y * math.min(1,1/ChangeRatio) + BoarderWidth / 2, 0);
         Vector3 RightPosition = new(TRCorner.x * math.min(1, ChangeRatio) + BoarderWidth / 2, 0, 0);
