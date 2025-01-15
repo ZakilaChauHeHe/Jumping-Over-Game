@@ -37,6 +37,10 @@ PrefabInstance:
       value: Enemy_Skill, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
+      propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}

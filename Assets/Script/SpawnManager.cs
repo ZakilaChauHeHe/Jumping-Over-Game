@@ -48,9 +48,17 @@ public class SpawnManager : MonoBehaviour
         foreach(SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
 
         int randomIndex = UnityEngine.Random.Range(0, total_Weight);
-        randomIndex %= SpawnTable.Count;
-        Debug.Log(new Vector2(randomIndex,total_Weight));
-        GameObject enemy = Instantiate(SpawnTable[randomIndex].Prefab, spawnPos, Quaternion.identity, SpawnObject.transform);
+        GameObject EnemyToSpawn = SpawnTable[0].Prefab;
+        foreach (SpawnEntry entry in SpawnTable)
+        {
+            randomIndex -= entry.weight;
+            if (randomIndex < 0)
+            {
+                EnemyToSpawn = entry.Prefab;
+                break;
+            }
+        }
+        GameObject enemy = Instantiate(EnemyToSpawn, spawnPos, Quaternion.identity, SpawnObject.transform);
         Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
 
         Vector3 downwardDirection = UnityEngine.Random.insideUnitCircle.normalized;

@@ -513,8 +513,10 @@ MonoBehaviour:
   GameManager: {fileID: 2113372723}
   GameBoarder: {fileID: 1796452790}
   SpawnTable:
-  - EnemyPrefab: {fileID: 0}
-    weight: 0
+  - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
+    weight: 2
+  - Prefab: {fileID: 524538875547432492, guid: 2c269a8ef52dd1e46964d7e37c90af8a, type: 3}
+    weight: 1
   SpawnObject: {fileID: 1523529626}
   TimeBetweenSpawn: 1
 --- !u!4 &552681364
@@ -1311,14 +1313,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: GlobalObjectIdHash
-      value: 3220151047
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 4212679981
-      objectReference: {fileID: 0}
     - target: {fileID: 30218152056807780, guid: 2fe9c03052d1d6447b8e1110f723a9f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.029999474

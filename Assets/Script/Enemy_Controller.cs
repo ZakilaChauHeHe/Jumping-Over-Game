@@ -17,6 +17,13 @@ public class Enemy_Controller : MonoBehaviour
     [Header("Special Effect")]
     public UnityEvent OnWallCollide;
     // Update is called once per frame
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)rb.linearVelocity);
+    }
+
     void Update()
     {
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position, transform.up,999999999, playerMask);
