@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class ShakeEffect : MonoBehaviour
 {
-    [SerializeField] private float duration = 1f;
+    [SerializeField] private float duration = .3f;
     [SerializeField] private AnimationCurve curve;
     
     private bool shaking = false;
-    public void FireEffect()
+    public void FireEffect(float _strength)
     {
-        if(!shaking) StartCoroutine(Shake());
+        if(!shaking) StartCoroutine(Shake(_strength));
     }
-    private IEnumerator Shake()
+    private IEnumerator Shake(float _strength)
     {
         shaking = true;
         Vector3 startPos = transform.position;
@@ -19,7 +19,7 @@ public class ShakeEffect : MonoBehaviour
         while (elpasedTime < duration)
         {
             elpasedTime += Time.deltaTime;
-            float strength = curve.Evaluate(elpasedTime/duration);
+            float strength = curve.Evaluate(elpasedTime/duration) * _strength;
             transform.position = startPos + Random.insideUnitSphere * strength;
             yield return null;
         }

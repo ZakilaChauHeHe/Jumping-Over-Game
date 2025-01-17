@@ -1,7 +1,9 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UnityEngine.ParticleSystem;
 
 public class Player_Controller : MonoBehaviour
 {
@@ -17,11 +19,13 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private float Jump_Power = 1f;
     [SerializeField] private int AirJump_Charge = 1;
     [SerializeField] private float JumpDampRatio = .75f;
-    [SerializeField] private float spinFreq = 1;
+    [SerializeField] private float Invincible_T = 1f;
     [Header("Event")]
-    public UnityEvent HeartLoss;
+    public UnityEvent OnHeartLoss;
+    public UnityEvent OnJumped;
 
     [HideInInspector] public bool onGround = false;
+    public bool Invincible { get; private set; } = false;
     private float horizontal;
     private int JumpLeft;
 
@@ -30,7 +34,6 @@ public class Player_Controller : MonoBehaviour
     void Update()
     {
         UpdateGrounded();
-        if (onGround) ResetOrintation();
         rb.linearVelocityX = horizontal * speed;
     }
 
@@ -40,22 +43,20 @@ public class Player_Controller : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position - transform.up * GroundCheckCastDistance);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //player hitted
     {
+        if (Invincible) return;
         if((1 << collision.gameObject.layer) == EnemyMask.value) // Mask is 2^(layer index) => 1<<(items layer) will check if the layer is the mask
         {
             heart--;
-            HeartLoss.Invoke();
             if(heart <= 0)
             {
                 game_manager.player_Died?.Invoke(gameObject);
+                return;
             }
+            StartCoroutine(ProcInvincible());
+            OnHeartLoss.Invoke();
         }
-    }
-
-    private void ResetOrintation()
-    {
-        transform.rotation = Quaternion.identity;
     }
 
     private void UpdateGrounded()
@@ -79,9 +80,15 @@ public class Player_Controller : MonoBehaviour
             else JumpLeft--;
             rb.linearVelocityY = 0;
             rb.AddForceY(Jump_Power * math.pow(JumpDampRatio,AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
-            rb.angularVelocity = spinFreq;
-            float spinDirection = (rb.linearVelocityX == 0) ? rb.angularVelocity : -rb.linearVelocityX;
-            rb.angularVelocity = spinDirection * spinFreq;
+            OnJumped.Invoke();
         }
+    }
+    private IEnumerator ProcInvincible()
+    {
+        Invincible = true;
+        Debug.Log(Time.time);
+        yield return new WaitForSeconds(Invincible_T);
+        Debug.Log(Time.time);
+        Invincible = false;
     }
 }   

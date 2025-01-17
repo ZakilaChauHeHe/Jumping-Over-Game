@@ -54,7 +54,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public void FireDestroy()
     {
-        Camera.main.GetComponent<ShakeEffect>().FireEffect();
+        Camera.main.GetComponent<ShakeEffect>().FireEffect(1f);
         GameObject particle = Instantiate(deathParticlePrefab);
         ParticleSystem.MainModule main = particle.GetComponent<ParticleSystem>().main;
         main.startColor = spriteRenderer.color;

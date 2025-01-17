@@ -18,13 +18,12 @@ public class HealthBar : MonoBehaviour
         for (int i = 0; i < HeartLeft; i++) 
         {
             GameObject NewHeart = Instantiate(HeartPrefab);
-            NewHeart.transform.SetParent(transform);
-            Debug.Log(NewHeart.transform.localScale.y);
+            NewHeart.transform.SetParent(transform);    
             NewHeart.transform.localPosition = Vector3.zero - new Vector3(0, -i * NewHeart.transform.localScale.y, 0);
             NewHeart.GetComponent<Renderer>().sortingOrder = -i;
             Hearts.Add(NewHeart);
         }
-    }
+    }   
 
     public void UpdateHeart()
     {
