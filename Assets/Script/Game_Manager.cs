@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class Game_Manager : MonoBehaviour
 {
     public static Game_Manager Instance;
@@ -20,7 +21,15 @@ public class Game_Manager : MonoBehaviour
 
     private void Start()
     {
-        Instance = this;
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void GameOver()
