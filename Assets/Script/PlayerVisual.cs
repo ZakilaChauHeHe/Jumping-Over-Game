@@ -8,9 +8,9 @@ public class PlayerVisual : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Player_Controller _controller;
+    [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D rb;
     [Header("VFX")]
-    [SerializeField] private float spinFreq = 1f;
     [SerializeField] private GameObject DamagedParticlePrefab;
     [SerializeField] private Color DamagedParticleColor = Color.red;
     [SerializeField] private Color invincible_Color = Color.white;
@@ -21,9 +21,9 @@ public class PlayerVisual : MonoBehaviour
         Controller = gameObject.GetComponentInParent<Player_Controller>();
     }
 
-    private void Update()
+    private void Update()   
     {
-        if (Controller.onGround) ResetOrintation();
+        if (Controller.Grounded) ResetOrintation();
     }
 
     private void ResetOrintation()
@@ -35,7 +35,9 @@ public class PlayerVisual : MonoBehaviour
     {
         float spinDirection = -math.clamp((int)rb.linearVelocityX, -1f, 1f);
         spinDirection = (spinDirection == 0) ? 1 : spinDirection;
-        rb.angularVelocity = spinDirection * spinFreq * 360;
+
+        _animator.speed = spinDirection;
+        _animator.Play("PlayerJump",0,0f);
     }
 
     public void PlayerDamagedEffect()

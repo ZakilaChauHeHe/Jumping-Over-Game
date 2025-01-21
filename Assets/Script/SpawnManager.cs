@@ -43,7 +43,8 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Vector3 spawnPos = new(UnityEngine.Random.value * 3, TopBoarder.position.y - TopBoarder.lossyScale.y, 0);
+        Vector3 spawnPos = new(UnityEngine.Random.value * 3, TopBoarder.position.y - TopBoarder.lossyScale.y, 0); //spawn posiiton
+        // rng enemy to spawn
         int total_Weight = 0;
         foreach(SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
 
@@ -58,6 +59,7 @@ public class SpawnManager : MonoBehaviour
                 break;
             }
         }
+        ///
         GameObject enemy = Instantiate(EnemyToSpawn, spawnPos, Quaternion.identity, SpawnObject.transform);
         Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
 

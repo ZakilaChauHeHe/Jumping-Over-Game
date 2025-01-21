@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4879139238651838406}
   - component: {fileID: 9093434891482914086}
   - component: {fileID: 4343141125793024662}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Boarder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4392551592358256095}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.06, y: -10.65, z: 0}
   m_LocalScale: {x: 13.294125, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

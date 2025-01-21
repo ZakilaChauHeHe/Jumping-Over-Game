@@ -10,11 +10,14 @@ public class HealthBar : MonoBehaviour
 
     private GameObject Player;
     private int HeartLeft;
-    private List<GameObject> Hearts = new List<GameObject>();
+    private List<GameObject> Hearts = new();
     private void Start()
     {
         Player = GameObject.Find("Player");
-        HeartLeft = Player.GetComponent<Player_Controller>().heart;
+        HeartSystem heartSys = Player.GetComponent<HeartSystem>();
+        HeartLeft = heartSys.HeartLeft;
+        heartSys.OnHeartLoss.AddListener(UpdateHeart);
+
         for (int i = 0; i < HeartLeft; i++) 
         {
             GameObject NewHeart = Instantiate(HeartPrefab);
@@ -23,11 +26,11 @@ public class HealthBar : MonoBehaviour
             NewHeart.GetComponent<Renderer>().sortingOrder = -i;
             Hearts.Add(NewHeart);
         }
-    }   
+        }   
 
     public void UpdateHeart()
     {
-        for (int i = 0; i < HeartLeft- Player.GetComponent<Player_Controller>().heart; i++)
+        for (int i = 0; i < HeartLeft- Player.GetComponent<Player_Controller>().Heart; i++)
         {
             Destroy(Hearts[0]);
             Hearts.Remove(Hearts[0]);

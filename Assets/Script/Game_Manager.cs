@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour
 {
+    public static Game_Manager Instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     [SerializeField] private GameObject player;
@@ -13,28 +15,16 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private GameObject GameoverPanel;
     [Header("Stored Data")]
     public int score = 0;
-    [SerializeField] private bool GodMode = false;
+    //[SerializeField] private bool GodMode = false;
     public bool Disable_Spawning = false;
 
-    public Action<GameObject> player_Died;
-
-    private void Start()    
+    private void Start()
     {
-        if (!GodMode) player_Died += Handle_player_Died;
-
+        Instance = this;
     }
 
-    private void FixedUpdate()
+    public void GameOver()
     {
-        if (player.GetComponent<Player_Controller>().onGround)
-        {
-            CleanEnemy();
-        }
-    }
-
-    private void Handle_player_Died(GameObject _player)
-    {
-       _player.SetActive(false);
         Time.timeScale = 0;
         GameoverPanel.SetActive(true);
     }
@@ -45,17 +35,7 @@ public class Game_Manager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-
-    private void CleanEnemy()
-    {
-        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Tagged");
-        foreach (GameObject taggedObject in taggedObjects)
-        {
-            UpdateScore();
-            taggedObject.GetComponent<Enemy_Controller>()?.FireDestroy();
-        }
-    }
-    private void UpdateScore()
+    public void UpdateScore()
     {
         score++;
         ScoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy_Skill : MonoBehaviour
+public class ReFire : EnemySkill
 {
     [Header("References")]
     [SerializeField] private Enemy_Controller EnemyController;
@@ -14,7 +14,7 @@ public class Enemy_Skill : MonoBehaviour
         Player = GameObject.Find("Player");
     }
 
-    public void ReFire(float delayT)
+    public void Activate(float delayT)
     {
         Vector3 direction;
         direction = (Player.transform.position - gameObject.transform.position).normalized;

@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -8,34 +9,39 @@ using static UnityEngine.ParticleSystem;
 public class Player_Controller : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Game_Manager game_manager;
+    [SerializeField] public PlayerVisual playerVisual;
+    [SerializeField] private HeartSystem heartSystem;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask GroundMask;
     [SerializeField] private LayerMask EnemyMask;
     [SerializeField] private float GroundCheckCastDistance = .7f;
     [Header("Attributes")]
-    public int heart = 3;
+    [SerializeField] public int Heart = 3;
+    [SerializeField] public int AirJump_Charge = 1;
     [SerializeField] private float speed = 6f;
     [SerializeField] private float Jump_Power = 1f;
-    [SerializeField] private int AirJump_Charge = 1;
     [SerializeField] private float JumpDampRatio = .75f;
     [SerializeField] private float Invincible_T = 1f;
     [Header("Event")]
-    public UnityEvent OnHeartLoss;
     public UnityEvent OnJumped;
+    public UnityEvent OnEnemyKilled;
 
-    [HideInInspector] public bool onGround = false;
-    public bool Invincible { get; private set; } = false;
+    [HideInInspector] public bool Grounded = false;
+    [HideInInspector] public bool Invincible { get; private set; } = false;
     private float horizontal;
     private int JumpLeft;
-
 
     // Update is called once per frame
     void Update()
     {
         UpdateGrounded();
+        animator.SetBool("Grounded", Grounded);
+        if (Grounded) CleanEnemy();
+        float direction = math.clamp((int)rb.linearVelocityX, -1f, 1f);
+        animator.SetFloat("MoveDirection", (direction != 0)? direction : 1);
         rb.linearVelocityX = horizontal * speed;
-    }
+    }   
 
     public void OnDrawGizmosSelected()
     {
@@ -48,21 +54,15 @@ public class Player_Controller : MonoBehaviour
         if (Invincible) return;
         if((1 << collision.gameObject.layer) == EnemyMask.value) // Mask is 2^(layer index) => 1<<(items layer) will check if the layer is the mask
         {
-            heart--;
-            if(heart <= 0)
-            {
-                game_manager.player_Died?.Invoke(gameObject);
-                return;
-            }
-            StartCoroutine(ProcInvincible());
-            OnHeartLoss.Invoke();
+            Destroy(collision.gameObject);
+            heartSystem.GotDamaged();
         }
     }
 
     private void UpdateGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, GroundCheckCastDistance, GroundMask);
-        onGround = (hit.collider != null);
+        Grounded = (hit.collider != null);
     }
 
 
@@ -75,20 +75,34 @@ public class Player_Controller : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!onGround && JumpLeft == 0) return;
-            if (onGround) JumpLeft = AirJump_Charge;
+            if (!Grounded && JumpLeft == 0) return;
+            if (Grounded) JumpLeft = AirJump_Charge;
             else JumpLeft--;
             rb.linearVelocityY = 0;
-            rb.AddForceY(Jump_Power * math.pow(JumpDampRatio,AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
+            rb.AddForceY(Jump_Power * math.pow(JumpDampRatio, AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
             OnJumped.Invoke();
         }
     }
-    private IEnumerator ProcInvincible()
+
+    public void ProcInvicible()
+    {
+        StartCoroutine(loadInvicible());
+        playerVisual.PlayerDamagedEffect();
+    }
+
+    public IEnumerator loadInvicible()
     {
         Invincible = true;
-        Debug.Log(Time.time);
         yield return new WaitForSeconds(Invincible_T);
-        Debug.Log(Time.time);
         Invincible = false;
     }
-}   
+    private void CleanEnemy()
+    {
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Tagged");
+        foreach (GameObject taggedObject in taggedObjects)
+        {
+            OnEnemyKilled.Invoke();
+            taggedObject.GetComponent<Enemy_Controller>()?.FireDestroy();
+        }
+    }
+}

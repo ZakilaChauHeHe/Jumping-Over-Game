@@ -13,6 +13,10 @@ PrefabInstance:
       value: Tracker
       objectReference: {fileID: 0}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
+      propertyPath: GroundMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -23,18 +27,18 @@ PrefabInstance:
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8092178170187776816}
+      objectReference: {fileID: -930356567318100578}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReFire
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Enemy_Skill, Assembly-CSharp
+      value: ReFire, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 890229178309273305, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       propertyPath: OnWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
@@ -102,7 +106,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
       insertIndex: 3
-      addedObject: {fileID: 8092178170187776816}
+      addedObject: {fileID: -930356567318100578}
   m_SourcePrefab: {fileID: 100100000, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
 --- !u!114 &103300441267216076 stripped
 MonoBehaviour:
@@ -120,7 +124,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
   m_PrefabInstance: {fileID: 951461891816847381}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8092178170187776816
+--- !u!114 &-930356567318100578
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f329d924fa9cb40b6fcfb23c7b6134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7893819638141694242, guid: 2fe9c03052d1d6447b8e1110f723a9f2, type: 3}
   EnemyController: {fileID: 103300441267216076}
   rb: {fileID: 3881484402471977590}
 --- !u!50 &3881484402471977590 stripped
