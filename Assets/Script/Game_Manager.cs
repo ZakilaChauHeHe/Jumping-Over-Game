@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 
 public class Game_Manager : MonoBehaviour
@@ -15,11 +18,10 @@ public class Game_Manager : MonoBehaviour
     [SerializeField] private GameObject ScoreBoard;
     [SerializeField] private GameObject GameoverPanel;
     [Header("Stored Data")]
-    public int score = 0;
-    //[SerializeField] private bool GodMode = false;
+    public int Score { get; private set; } = 0;
     public bool Disable_Spawning = false;
 
-    private void Start()
+    private void Awake()
     {
         if(Instance == null)
         {
@@ -32,21 +34,50 @@ public class Game_Manager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        LoadGamemode();
+    }
+
+
     public void GameOver()
     {
         Time.timeScale = 0;
         GameoverPanel.SetActive(true);
     }
 
-    public void RestartGame()
+    public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1;
     }
 
-    public void UpdateScore()
+    private void LoadGamemode()
     {
-        score++;
-        ScoreBoard.GetComponent<TextMeshProUGUI>().text = "Score: " + score;
+        switch (GamemodeManager.Instance.gamemode)
+        {
+            case Gamemode.Time:
+                StartCoroutine(TimedAddScore());
+                break;
+            case Gamemode.Score:
+                player.GetComponent<Player_Controller>().OnEnemyKilled.AddListener(AddScore);
+                break;
+            case Gamemode.Stage:
+                break;
+        }
+    }
+
+    private IEnumerator TimedAddScore()
+    {
+        while (true) {
+            AddScore();
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void AddScore()
+    {
+        Score++;
+        ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
     }
 }

@@ -10,9 +10,9 @@ public enum Gamemode
 public class GamemodeManager : MonoBehaviour
 {
     public static GamemodeManager Instance;
-    [SerializeField] private Gamemode gamemode;
+    [SerializeField] public Gamemode gamemode;
 
-    void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
