@@ -16,7 +16,7 @@ public class ScoreboardController : MonoBehaviour
     {
         string displayText = "Display Error!";
 
-        switch (GamemodeManager.Instance.gamemode)
+        switch (DataManager.Instance.Gamemode)
         {
             case Gamemode.Time:
                 displayText = "Time: " + Game_Manager.Instance.Score;

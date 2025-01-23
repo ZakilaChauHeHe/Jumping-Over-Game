@@ -1183,7 +1183,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2113372723}
         m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
-        m_MethodName: loadScene
+        m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2113372723}
         m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
-        m_MethodName: loadScene
+        m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3dbcba0195504895744cce9b5facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemode: 0
+  gamemode: 2
 --- !u!4 &1530184427
 Transform:
   m_ObjectHideFlags: 0

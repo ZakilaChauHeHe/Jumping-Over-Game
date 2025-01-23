@@ -20,18 +20,11 @@ public class Game_Manager : MonoBehaviour
     [Header("Stored Data")]
     public int Score { get; private set; } = 0;
     public bool Disable_Spawning = false;
+    private bool Mutator = false;
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            //Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     private void Start()
@@ -54,7 +47,7 @@ public class Game_Manager : MonoBehaviour
 
     private void LoadGamemode()
     {
-        switch (GamemodeManager.Instance.gamemode)
+        switch (DataManager.Instance.Gamemode)
         {
             case Gamemode.Time:
                 StartCoroutine(TimedAddScore());
@@ -79,5 +72,11 @@ public class Game_Manager : MonoBehaviour
     {
         Score++;
         ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
+        if (Mutator && Score % 10 == 0) NewMutator();
+    }
+
+    private void NewMutator()
+    {
+
     }
 }
