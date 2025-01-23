@@ -1,6 +1,6 @@
 name: Build project
 
-on: push
+on: [push, pull_request]
 
 jobs:
   buildForAllSupportedPlatforms:
@@ -15,9 +15,9 @@ jobs:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
           # - iOS # Build an iOS player.
-          # - Android # Build an Android .apk standalone app
+          # - Android # Build an Android .apk standalone app.
+          - WebGL # WebGL.
     steps:
-      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           lfs: true
