@@ -14,9 +14,10 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         Player = GameObject.Find("Player");
-        HeartSystem heartSys = Player.GetComponent<HeartSystem>();
-        HeartLeft = heartSys.HeartLeft;
-        heartSys.OnHeartLoss.AddListener(UpdateHeart);
+        PlayerProfile playerProfile = Player.GetComponent<Player_Controller>().playerProfile;
+        HeartSystem HeartSys = Player.GetComponent<HeartSystem>();
+        HeartLeft = playerProfile.Heart;
+        HeartSys.OnHeartLoss.AddListener(UpdateHeart);
 
         for (int i = 0; i < HeartLeft; i++) 
         {
@@ -30,7 +31,7 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHeart()
     {
-        for (int i = 0; i < HeartLeft- Player.GetComponent<Player_Controller>().Heart; i++)
+        for (int i = 0; i < HeartLeft- Player.GetComponent<Player_Controller>().playerProfile.Heart; i++)
         {
             Destroy(Hearts[0]);
             Hearts.Remove(Hearts[0]);

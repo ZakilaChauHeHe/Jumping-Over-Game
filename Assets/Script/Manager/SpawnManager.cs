@@ -31,7 +31,6 @@ public class SpawnManager : MonoBehaviour
         TopBoarder = GameBoarder.transform.Find("TopBoarder").transform;
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         if (Time.time >= last_Spawn + TimeBetweenSpawn && !GameManager.Disable_Spawning)

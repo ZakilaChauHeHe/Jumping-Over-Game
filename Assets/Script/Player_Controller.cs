@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEditor;
@@ -5,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.ParticleSystem;
-
+    
 public class Player_Controller : MonoBehaviour
 {
     [Header("References")]
@@ -17,22 +18,23 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private LayerMask EnemyMask;
     [SerializeField] private float GroundCheckCastDistance = .7f;
     [Header("Attributes")]
-    [SerializeField] public int Heart = 3;
-    [SerializeField] public int AirJump_Charge = 1;
-    [SerializeField] private float speed = 6f;
-    [SerializeField] private float Jump_Power = 1f;
     [SerializeField] private float JumpDampRatio = .75f;
     [SerializeField] private float Invincible_T = 1f;
     [Header("Event")]
     public UnityEvent OnJumped;
     public UnityEvent OnEnemyKilled;
 
+    [HideInInspector] public PlayerProfile playerProfile;
     [HideInInspector] public bool Grounded = false;
     [HideInInspector] public bool Invincible { get; private set; } = false;
     private float horizontal;
     private int JumpLeft;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        playerProfile = DataManager.Instance.PlayerProfile;
+
+    }
     void Update()
     {
         UpdateGrounded();
@@ -40,7 +42,7 @@ public class Player_Controller : MonoBehaviour
         if (Grounded) CleanEnemy();
         float direction = math.clamp((int)rb.linearVelocityX, -1f, 1f);
         animator.SetFloat("MoveDirection", (direction != 0)? direction : 1);
-        rb.linearVelocityX = horizontal * speed;
+        rb.linearVelocityX = horizontal * playerProfile.speed;
     }   
 
     public void OnDrawGizmosSelected()
@@ -76,10 +78,10 @@ public class Player_Controller : MonoBehaviour
         if (context.performed)
         {
             if (!Grounded && JumpLeft == 0) return;
-            if (Grounded) JumpLeft = AirJump_Charge;
+            if (Grounded) JumpLeft = playerProfile.AirJump_Charge;
             else JumpLeft--;
             rb.linearVelocityY = 0;
-            rb.AddForceY(Jump_Power * math.pow(JumpDampRatio, AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
+            rb.AddForceY(playerProfile.Jump_Power * math.pow(JumpDampRatio, playerProfile.AirJump_Charge - JumpLeft), ForceMode2D.Impulse);
             OnJumped.Invoke();
         }
     }

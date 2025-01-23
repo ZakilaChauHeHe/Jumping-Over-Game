@@ -9,21 +9,14 @@ public class HeartSystem : MonoBehaviour
     public UnityEvent OnHeartLoss;
     public UnityEvent OnDie;
 
-    [HideInInspector] public int HeartLeft {  get; private set; }
-    private void Start()
-    {
-        HeartLeft = PlayerController.Heart;
-    }
-
     public void GotDamaged()
     {
-        PlayerController.Heart--;
-        if (PlayerController.Heart <= 0)
+        PlayerController.playerProfile.Heart--;
+        if (PlayerController.playerProfile.Heart<= 0)
         {
             OnDie.Invoke();
             return;
         }
-        HeartLeft = PlayerController.Heart;
         OnHeartLoss.Invoke();
     }
 }
