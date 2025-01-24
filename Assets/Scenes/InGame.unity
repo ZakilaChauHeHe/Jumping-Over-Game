@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf640d95c7248e4783705c68319b1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
   playerVisual: {fileID: 647562458}
   heartSystem: {fileID: 647562459}
   rb: {fileID: 647562455}
@@ -1036,7 +1037,7 @@ MonoBehaviour:
   playerProfile:
     Heart: 3
     AirJump_Charge: 1
-    speed: 6
+    Speed: 75
     Jump_Power: 1
   Grounded: 0
 --- !u!4 &647562461
@@ -1501,56 +1502,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917855202}
   m_CullTransparentMesh: 1
---- !u!1 &955867054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 955867056}
-  - component: {fileID: 955867055}
-  m_Layer: 0
-  m_Name: DataManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &955867055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955867054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93f9378ee808e548b474539cbeb18da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gamemode: 0
-  PlayerProfile:
-    Heart: 3
-    AirJump_Charge: 1
-    speed: 6
-    Jump_Power: 25
---- !u!4 &955867056
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955867054}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7544184, y: 0.16844936, z: -0.07112187}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056335439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6136bc99c124e7343b88caacf30494c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
 --- !u!1 &1523529626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113372722}
   - component: {fileID: 2113372723}
+  - component: {fileID: 2113372724}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2295,10 +2248,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3de52f8e9387e47aad307f4052b02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 0}
   player: {fileID: 647562452}
   ScoreBoard: {fileID: 1517383176}
   GameoverPanel: {fileID: 2053155960}
   Disable_Spawning: 0
+--- !u!114 &2113372724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113372721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ae330ed003fb84dad430790a29e7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5395349039281923950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2365,7 +2331,6 @@ SceneRoots:
   - {fileID: 371550225}
   - {fileID: 552681364}
   - {fileID: 717625187}
-  - {fileID: 955867056}
   - {fileID: 300277701}
   - {fileID: 519420032}
   - {fileID: 1785835752}

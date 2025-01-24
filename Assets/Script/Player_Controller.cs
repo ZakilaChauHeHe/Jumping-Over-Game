@@ -10,6 +10,7 @@ using static UnityEngine.ParticleSystem;
 public class Player_Controller : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private DataManager dataManager;
     [SerializeField] public PlayerVisual playerVisual;
     [SerializeField] private HeartSystem heartSystem;
     [SerializeField] private Rigidbody2D rb;
@@ -32,7 +33,7 @@ public class Player_Controller : MonoBehaviour
 
     private void Start()
     {
-        playerProfile = DataManager.Instance.PlayerProfile;
+        playerProfile = dataManager.PlayerProfile;
 
     }
     void Update()
@@ -42,7 +43,7 @@ public class Player_Controller : MonoBehaviour
         if (Grounded) CleanEnemy();
         float direction = math.clamp((int)rb.linearVelocityX, -1f, 1f);
         animator.SetFloat("MoveDirection", (direction != 0)? direction : 1);
-        rb.linearVelocityX = horizontal * playerProfile.speed;
+        rb.linearVelocityX = horizontal * playerProfile.Speed;
     }   
 
     public void OnDrawGizmosSelected()

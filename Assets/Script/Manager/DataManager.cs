@@ -6,29 +6,28 @@ using UnityEngine;
 public class PlayerProfile
 {
     public int Heart = 3;
+    public float Speed = 1f;
+    public float Jump_Power = 75f;
     public int AirJump_Charge = 1;
-    public float speed = 6f;
-    public float Jump_Power = 3f;
 }
-
-public class DataManager : MonoBehaviour
+[CreateAssetMenu(fileName = "DataManagerSO",menuName = "ScriptableObjects/DataManager")]
+public class DataManager : ScriptableObject
 {
-    public static DataManager Instance;
     [Header("Datas")]
     public Gamemode Gamemode;
-    public PlayerProfile PlayerProfile;
+    [HideInInspector] public PlayerProfile PlayerProfile;
+    [SerializeField] private PlayerProfile SourceProfile;
 
-    void Awake()
+    private void OnEnable()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        ResetPlayerProfile();
     }
 
+    private void ResetPlayerProfile()
+    {
+        PlayerProfile.Heart = SourceProfile.Heart;
+        PlayerProfile.Speed = SourceProfile.Speed;
+        PlayerProfile.Jump_Power = SourceProfile.Jump_Power;
+        PlayerProfile.AirJump_Charge = SourceProfile.AirJump_Charge;
+    }
 }

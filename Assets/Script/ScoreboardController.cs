@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreboardController : MonoBehaviour
 {
+    [SerializeField] private DataManager dataManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,7 +17,7 @@ public class ScoreboardController : MonoBehaviour
     {
         string displayText = "Display Error!";
 
-        switch (DataManager.Instance.Gamemode)
+        switch (dataManager.Gamemode)
         {
             case Gamemode.Time:
                 displayText = "Time: " + Game_Manager.Instance.Score;

@@ -14,6 +14,7 @@ public class Game_Manager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
+    [SerializeField] private DataManager dataManager;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject ScoreBoard;
     [SerializeField] private GameObject GameoverPanel;
@@ -47,9 +48,10 @@ public class Game_Manager : MonoBehaviour
 
     private void LoadGamemode()
     {
-        switch (DataManager.Instance.Gamemode)
+        switch (dataManager.Gamemode)
         {
             case Gamemode.Time:
+                Score -= 1;
                 StartCoroutine(TimedAddScore());
                 break;
             case Gamemode.Score:
