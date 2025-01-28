@@ -21,7 +21,9 @@ public class Enemy_Controller : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)rb.linearVelocity);
+        Vector3 direction = rb.linearVelocity.normalized;
+        float magnitude = math.log10(rb.linearVelocity.magnitude);
+        Gizmos.DrawLine(transform.position, transform.position + direction * magnitude);
     }
 
     void Update()

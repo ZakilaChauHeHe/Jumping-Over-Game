@@ -15,13 +15,15 @@ public class Game_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     [SerializeField] private DataManager dataManager;
-    [SerializeField] private GameObject player;
+    [SerializeField] private MutatorManager mutatorManager;
     [SerializeField] private GameObject ScoreBoard;
     [SerializeField] private GameObject GameoverPanel;
     [Header("Stored Data")]
     public int Score { get; private set; } = 0;
     public bool Disable_Spawning = false;
-    private bool Mutator = false;
+
+    private GameObject Player;
+    private bool Mutator = true;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class Game_Manager : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.Find("Player");
         LoadGamemode();
     }
 
@@ -55,7 +58,7 @@ public class Game_Manager : MonoBehaviour
                 StartCoroutine(TimedAddScore());
                 break;
             case Gamemode.Score:
-                player.GetComponent<Player_Controller>().OnEnemyKilled.AddListener(AddScore);
+                Player.GetComponent<Player_Controller>().OnEnemyKilled.AddListener(AddScore);
                 break;
             case Gamemode.Stage:
                 break;
@@ -74,11 +77,6 @@ public class Game_Manager : MonoBehaviour
     {
         Score++;
         ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
-        if (Mutator && Score % 10 == 0) NewMutator();
-    }
-
-    private void NewMutator()
-    {
-
+        if (Mutator && Score % 5 == 0) mutatorManager.NewMutator();
     }
 }

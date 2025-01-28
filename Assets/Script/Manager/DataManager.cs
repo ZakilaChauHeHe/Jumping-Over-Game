@@ -1,13 +1,11 @@
 using UnityEngine;
 
-
-
 [System.Serializable]
 public class PlayerProfile
 {
     public int Heart = 3;
-    public float Speed = 1f;
-    public float Jump_Power = 75f;
+    public float Speed = 7.5f;
+    public float Jump_Power = 25f;
     public int AirJump_Charge = 1;
 }
 [CreateAssetMenu(fileName = "DataManagerSO",menuName = "ScriptableObjects/DataManager")]

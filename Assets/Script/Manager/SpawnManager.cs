@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class SpawnEntry
@@ -19,16 +20,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Game_Manager GameManager;
     [SerializeField] private GameObject GameBoarder;
     [SerializeField] private List<SpawnEntry> SpawnTable;
-    [SerializeField] private GameObject SpawnObject;
+    [HideInInspector] public List<Action<GameObject>> PreSpawnEffects;
     [SerializeField] private float TimeBetweenSpawn = 1f;
 
     private float last_Spawn;
     private Transform TopBoarder;
-
+    [HideInInspector] public UnityEvent BeforeSpawn;
     void Start()
     {
         last_Spawn = Time.time;
         TopBoarder = GameBoarder.transform.Find("TopBoarder").transform;
+        PreSpawnEffects = new List<Action<GameObject>>();
     }
 
     private void FixedUpdate()
@@ -40,30 +42,39 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy()
+    private GameObject GetRandomEnemyInTable()         // rng enemy to spawn
     {
-        Vector3 spawnPos = new(UnityEngine.Random.value * 3, TopBoarder.position.y - TopBoarder.lossyScale.y, 0); //spawn posiiton
-        // rng enemy to spawn
         int total_Weight = 0;
-        foreach(SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
-
+        foreach (SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
         int randomIndex = UnityEngine.Random.Range(0, total_Weight);
-        GameObject EnemyToSpawn = SpawnTable[0].Prefab;
         foreach (SpawnEntry entry in SpawnTable)
         {
             randomIndex -= entry.weight;
             if (randomIndex < 0)
             {
-                EnemyToSpawn = entry.Prefab;
-                break;
+                return entry.Prefab;
             }
         }
-        ///
-        GameObject enemy = Instantiate(EnemyToSpawn, spawnPos, Quaternion.identity, SpawnObject.transform);
-        Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
+        return SpawnTable[0].Prefab;
+    } 
 
+    private void SpawnEnemy()
+    {
+        Vector3 spawnPos = new(UnityEngine.Random.value * 3, TopBoarder.position.y - TopBoarder.lossyScale.y, 0); //spawn posiiton
+
+        GameObject EnemyToSpawn = GetRandomEnemyInTable();
+        GameObject enemy = Instantiate(EnemyToSpawn, spawnPos, Quaternion.identity);
+        ApplyAllEffects(enemy,PreSpawnEffects);
+        Enemy_Controller enemy_Controller = enemy.GetComponent<Enemy_Controller>();
         Vector3 downwardDirection = UnityEngine.Random.insideUnitCircle.normalized;
         if (downwardDirection.y > 0) downwardDirection *= -1;
         enemy_Controller.ApplyForce(downwardDirection);
+    }
+    private void ApplyAllEffects(GameObject target, List<Action<GameObject>> ApplyEffects)
+    {
+        foreach (Action<GameObject> effect in ApplyEffects)
+        {
+            effect.Invoke(target);
+        }
     }
 }

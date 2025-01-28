@@ -516,8 +516,10 @@ MonoBehaviour:
     weight: 1
   - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
     weight: 2
-  SpawnObject: {fileID: 1523529626}
   TimeBetweenSpawn: 1
+  BeforeSpawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &552681364
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf640d95c7248e4783705c68319b1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
+  dataManager: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
   playerVisual: {fileID: 647562458}
   heartSystem: {fileID: 647562459}
   rb: {fileID: 647562455}
@@ -1036,9 +1038,9 @@ MonoBehaviour:
         m_CallState: 2
   playerProfile:
     Heart: 3
-    AirJump_Charge: 1
     Speed: 75
     Jump_Power: 1
+    AirJump_Charge: 1
   Grounded: 0
 --- !u!4 &647562461
 Transform:
@@ -1849,7 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6136bc99c124e7343b88caacf30494c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
+  dataManager: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
 --- !u!1 &1523529626
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,8 +2250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3de52f8e9387e47aad307f4052b02b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataManager: {fileID: 0}
-  player: {fileID: 647562452}
+  dataManager: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
+  mutatorManager: {fileID: 2113372724}
   ScoreBoard: {fileID: 1517383176}
   GameoverPanel: {fileID: 2053155960}
   Disable_Spawning: 0
@@ -2265,6 +2267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ae330ed003fb84dad430790a29e7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnManager: {fileID: 552681363}
+  mutatorList: {fileID: 11400000, guid: 3aadf6efac74fc54baf4ec8151eeb4c7, type: 2}
 --- !u!1001 &5395349039281923950
 PrefabInstance:
   m_ObjectHideFlags: 0
