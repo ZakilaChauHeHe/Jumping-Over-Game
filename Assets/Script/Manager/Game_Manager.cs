@@ -15,7 +15,6 @@ public class Game_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     [SerializeField] private DataManager dataManager;
-    [SerializeField] private MutatorManager mutatorManager;
     [SerializeField] private GameObject ScoreBoard;
     [SerializeField] private GameObject GameoverPanel;
     [Header("Stored Data")]
@@ -23,7 +22,7 @@ public class Game_Manager : MonoBehaviour
     public bool Disable_Spawning = false;
 
     private GameObject Player;
-    private bool Mutator = true;
+    //private bool Mutator = true;
 
     private void Awake()
     {
@@ -43,9 +42,11 @@ public class Game_Manager : MonoBehaviour
         GameoverPanel.SetActive(true);
     }
 
-    public void LoadScene(int sceneIndex)
+
+    public void RestartGame()
     {
-        SceneManager.LoadScene(sceneIndex);
+        dataManager.ResetPlayerProfile();
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
@@ -77,6 +78,5 @@ public class Game_Manager : MonoBehaviour
     {
         Score++;
         ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
-        if (Mutator && Score % 5 == 0) mutatorManager.NewMutator();
     }
 }

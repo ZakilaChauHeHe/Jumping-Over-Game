@@ -9,9 +9,10 @@ public enum Gamemode
 
 public class GamemodeManager : MonoBehaviour
 {
-    private DataManager dataManager;
+    [Header("References")]
+    [SerializeField] private DataManager DataManager;
     public void SetGamemode(int gamemodeIndex)
     {
-        dataManager.Gamemode = (Gamemode)gamemodeIndex;
+        DataManager.Gamemode = (Gamemode)gamemodeIndex;
     }
 }

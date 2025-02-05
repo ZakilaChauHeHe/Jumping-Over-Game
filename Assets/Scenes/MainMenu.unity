@@ -288,6 +288,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -40.85}
   m_SizeDelta: {x: 211.7, y: 81.7}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &280940433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+  m_PrefabInstance: {fileID: 647172946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9451063b7b84fa34aa9a1005dcbaca16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &300105643
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +693,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &647172946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 430.28244
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 270.29932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.27595186
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: SkipEndAnimation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8954627220458589674, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
 --- !u!1 &802993779
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,10 +1005,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 938965336}
-        m_TargetAssemblyTypeName: StartGame_Button, Assembly-CSharp
-        m_MethodName: Load_Scene
-        m_Mode: 3
+      - m_Target: {fileID: 280940433}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadGameScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1922,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3dbcba0195504895744cce9b5facf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemode: 2
+  DataManager: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
 --- !u!4 &1667090805
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,6 +2401,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 485895710}
   - {fileID: 1667090805}
+  - {fileID: 647172946}
   - {fileID: 896685548}
   - {fileID: 1124440135}
   - {fileID: 1546300199}

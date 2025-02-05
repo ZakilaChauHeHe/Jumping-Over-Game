@@ -21,7 +21,7 @@ public class DataManager : ScriptableObject
         ResetPlayerProfile();
     }
 
-    private void ResetPlayerProfile()
+    public void ResetPlayerProfile()
     {
         PlayerProfile.Heart = SourceProfile.Heart;
         PlayerProfile.Speed = SourceProfile.Speed;
