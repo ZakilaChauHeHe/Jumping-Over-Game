@@ -434,5 +434,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 7997084330649740391}
-  transitionTime: 3
+  transitionTime: 0.3333333
   SkipEndAnimation: 0

@@ -38,9 +38,12 @@ public class Player_Controller : MonoBehaviour
     }
     void Update()
     {
+        //Update Player Status
         UpdateGrounded();
         animator.SetBool("Grounded", Grounded);
+        //Enemy Kill
         if (Grounded) CleanEnemy();
+        //Player Movement
         float direction = math.clamp((int)rb.linearVelocityX, -1f, 1f);
         animator.SetFloat("MoveDirection", (direction != 0)? direction : 1);
         rb.linearVelocityX = horizontal * playerProfile.Speed;

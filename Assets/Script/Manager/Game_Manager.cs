@@ -78,5 +78,9 @@ public class Game_Manager : MonoBehaviour
     {
         Score++;
         ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
+        if(Score >= 10)
+        {
+            LevelLoader.instance.LoadRewardBuffScene();
+        }
     }
 }
