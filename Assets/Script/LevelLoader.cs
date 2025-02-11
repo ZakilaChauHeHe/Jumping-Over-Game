@@ -28,6 +28,11 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine (LoadScene(2));
     }
 
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadScene(0));
+    }
+
     IEnumerator WaitLoadinAnim()
     {
         GSManager.CurrentState = GameState.Loading;

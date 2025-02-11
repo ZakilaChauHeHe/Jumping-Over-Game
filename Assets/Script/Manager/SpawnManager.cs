@@ -21,8 +21,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameStateManager GSManager;
     [SerializeField] private GameObject GameBoarder;
     [SerializeField] private List<SpawnEntry> SpawnTable;
-    [HideInInspector] public List<Action<GameObject>> PreSpawnEffects;
     [SerializeField] private float TimeBetweenSpawn = 1f;
+    [HideInInspector] public List<Action<GameObject>> PreSpawnEffects;
 
     private float last_Spawn;
     private Transform TopBoarder;
@@ -78,4 +78,5 @@ public class SpawnManager : MonoBehaviour
             effect.Invoke(target);
         }
     }
+
 }
