@@ -741,6 +741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3230794927892239394, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
       propertyPath: SkipEndAnimation
       value: 1
@@ -933,7 +937,6 @@ GameObject:
   - component: {fileID: 938965335}
   - component: {fileID: 938965334}
   - component: {fileID: 938965333}
-  - component: {fileID: 938965336}
   m_Layer: 5
   m_Name: btn_Startgame
   m_TagString: Untagged
@@ -1055,18 +1058,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938965331}
   m_CullTransparentMesh: 1
---- !u!114 &938965336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938965331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df4b9f033f4a0584b9dfdebededdfc89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &983169858
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,8 @@ using UnityEngine.Events;
 public class SpawnEntry
 {
     public GameObject Prefab;
-    public int weight;
+    public int InitWeight;
+    public float ScaleWeight;
 }
 
 
@@ -24,6 +26,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float TimeBetweenSpawn = 1f;
     [HideInInspector] public List<Action<GameObject>> PreSpawnEffects;
 
+    private float Diffculty = 0f;
     private float last_Spawn;
     private Transform TopBoarder;
     [HideInInspector] public UnityEvent BeforeSpawn;
@@ -43,17 +46,22 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    private int GetEntryWeight(SpawnEntry Entry)
+    {
+        return (int) math.round(Entry.InitWeight + Entry.ScaleWeight * Diffculty);
+    }
+
     private GameObject GetRandomEnemyInTable()         // rng enemy to spawn
     {
         int total_Weight = 0;
-        foreach (SpawnEntry entry in SpawnTable) total_Weight += entry.weight;
+        foreach (SpawnEntry Entry in SpawnTable) total_Weight += GetEntryWeight(Entry);
         int randomIndex = UnityEngine.Random.Range(0, total_Weight);
-        foreach (SpawnEntry entry in SpawnTable)
+        foreach (SpawnEntry Entry in SpawnTable)
         {
-            randomIndex -= entry.weight;
+            randomIndex -= GetEntryWeight(Entry);
             if (randomIndex < 0)
             {
-                return entry.Prefab;
+                return Entry.Prefab;
             }
         }
         return SpawnTable[0].Prefab;
@@ -77,6 +85,11 @@ public class SpawnManager : MonoBehaviour
         {
             effect.Invoke(target);
         }
+    }
+
+    public void IncreaseDifficulty()
+    {
+        Diffculty += UnityEngine.Random.Range(0,1);
     }
 
 }

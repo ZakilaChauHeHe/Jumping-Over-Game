@@ -21,6 +21,11 @@ public class DataManager : ScriptableObject
 
     private void OnEnable()
     {
+        FullReset();
+    }
+
+    public void FullReset()
+    {
         ResetPlayerProfile();
         ResetGameData();
     }

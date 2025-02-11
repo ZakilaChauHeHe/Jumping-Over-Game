@@ -514,13 +514,17 @@ MonoBehaviour:
   GameBoarder: {fileID: 1796452790}
   SpawnTable:
   - Prefab: {fileID: 524538875547432492, guid: 2c269a8ef52dd1e46964d7e37c90af8a, type: 3}
-    weight: 2
+    InitWeight: 0
+    ScaleWeight: 0
   - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
-    weight: 4
+    InitWeight: 0
+    ScaleWeight: 0
   - Prefab: {fileID: 2630651969718963850, guid: bf19e3078b306cc469a41e750fa46956, type: 3}
-    weight: 1
+    InitWeight: 0
+    ScaleWeight: 0
   - Prefab: {fileID: 7158534001072064833, guid: f9c87a813fe039b42b5bc449a1d1baad, type: 3}
-    weight: 1000
+    InitWeight: 0
+    ScaleWeight: 0
   TimeBetweenSpawn: 1
   BeforeSpawn:
     m_PersistentCalls:
@@ -1198,6 +1202,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: FullReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2113372723}
         m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
         m_MethodName: RestartGame
@@ -1331,10 +1347,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2113372723}
-        m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: FullReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 878379174}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadMainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1381,6 +1409,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864362719}
   m_CullTransparentMesh: 1
+--- !u!114 &878379174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+  m_PrefabInstance: {fileID: 784555054}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9451063b7b84fa34aa9a1005dcbaca16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &917855202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2266,7 +2305,7 @@ MonoBehaviour:
   GSManager: {fileID: 11400000, guid: 31f3178fbf4f16444aae85cb8282fbe8, type: 2}
   ScoreBoard: {fileID: 1517383176}
   GameoverPanel: {fileID: 2053155960}
-  DisableBuff: 1
+  DisableBuff: 0
 --- !u!1001 &5395349039281923950
 PrefabInstance:
   m_ObjectHideFlags: 0
