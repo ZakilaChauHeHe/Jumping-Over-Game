@@ -18,6 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Game_Manager GameManager;
+    [SerializeField] private GameStateManager GSManager;
     [SerializeField] private GameObject GameBoarder;
     [SerializeField] private List<SpawnEntry> SpawnTable;
     [HideInInspector] public List<Action<GameObject>> PreSpawnEffects;
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Time.time >= last_Spawn + TimeBetweenSpawn && !GameManager.Disable_Spawning)
+        if (Time.time >= last_Spawn + TimeBetweenSpawn && GSManager.CurrentState == GameState.InGame)
         {
             last_Spawn = Time.time;
             SpawnEnemy();

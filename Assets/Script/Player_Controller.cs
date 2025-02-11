@@ -92,11 +92,11 @@ public class Player_Controller : MonoBehaviour
 
     public void ProcInvicible()
     {
-        StartCoroutine(loadInvicible());
+        StartCoroutine(LoadInvicible());
         playerVisual.PlayerDamagedEffect();
     }
 
-    public IEnumerator loadInvicible()
+    public IEnumerator LoadInvicible()
     {
         Invincible = true;
         yield return new WaitForSeconds(Invincible_T);
@@ -108,7 +108,7 @@ public class Player_Controller : MonoBehaviour
         foreach (GameObject taggedObject in taggedObjects)
         {
             OnEnemyKilled.Invoke();
-            taggedObject.GetComponent<Enemy_Controller>()?.FireDestroy();
+            taggedObject.GetComponent<Enemy_Controller>()?.Damage();
         }
     }
 }

@@ -15,11 +15,12 @@ public class Game_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("References")]
     [SerializeField] private DataManager dataManager;
+    [SerializeField] private GameStateManager GSManager;
     [SerializeField] private GameObject ScoreBoard;
     [SerializeField] private GameObject GameoverPanel;
     [Header("Stored Data")]
-    public int Score { get; private set; } = 0;
-    public bool Disable_Spawning = false;
+
+    [SerializeField] private bool DisableBuff = false;
 
     private GameObject Player;
     //private bool Mutator = true;
@@ -55,11 +56,10 @@ public class Game_Manager : MonoBehaviour
         switch (dataManager.Gamemode)
         {
             case Gamemode.Time:
-                Score -= 1;
                 StartCoroutine(TimedAddScore());
                 break;
             case Gamemode.Score:
-                Player.GetComponent<Player_Controller>().OnEnemyKilled.AddListener(AddScore);
+                Player.GetComponent<Player_Controller>().OnEnemyKilled.AddListener(GainScore);
                 break;
             case Gamemode.Stage:
                 break;
@@ -68,17 +68,18 @@ public class Game_Manager : MonoBehaviour
 
     private IEnumerator TimedAddScore()
     {
+        yield return new WaitUntil(() => GSManager.CurrentState == GameState.InGame);
         while (true) {
-            AddScore();
             yield return new WaitForSeconds(1);
+            GainScore();
         }
     }
 
-    private void AddScore()
+    private void GainScore()
     {
-        Score++;
+        dataManager.AddScore(1);
         ScoreBoard.GetComponent<ScoreboardController>().UpdateDisplay();
-        if(Score >= 10)
+        if(!DisableBuff && dataManager.Score % 10 == 0)
         {
             LevelLoader.instance.LoadRewardBuffScene();
         }

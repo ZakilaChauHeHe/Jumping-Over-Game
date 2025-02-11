@@ -433,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9451063b7b84fa34aa9a1005dcbaca16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GSManager: {fileID: 11400000, guid: 31f3178fbf4f16444aae85cb8282fbe8, type: 2}
   transition: {fileID: 7997084330649740391}
-  transitionTime: 0.3333333
-  SkipEndAnimation: 0
+  TransitionInTime: 3.25
+  transitionOutTime: 0.3333333

@@ -13,11 +13,14 @@ public class Enemy_Controller : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask GroundMask;
     [Header("Attribute")]
+    public int Health = 1;
     public float speed = 5f;
     [Header("Special Effect")]
-    public UnityEvent OnWallCollide;
-    // Update is called once per frame
+    public UnityEvent<GameObject> OnWallCollide;
+    public UnityEvent OnDamaged;
+    
 
+    private Color DefaultColor = Color.red;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -39,22 +42,39 @@ public class Enemy_Controller : MonoBehaviour
     {
         if (GroundMask.value == (1 << collision.collider.gameObject.layer))
         {
-            OnWallCollide.Invoke();
+            OnWallCollide.Invoke(collision.collider.gameObject);
         }
     }
 
     private void ApplyTag()
-    {    
+    {
+        DefaultColor = spriteRenderer.color;
         gameObject.tag = "Tagged";
         spriteRenderer.color = Color.yellow;
     }
-    
+    private void RemoveTag()
+    {
+        gameObject.tag = "Untagged";
+        spriteRenderer.color = DefaultColor;
+    }
     public void ApplyForce(Vector2 direction)
     {
         rb.AddForce(direction * speed);
     }
 
-    public void FireDestroy()
+    public void Damage()
+    {
+        Health--;
+        if (Health <= 0)
+        {
+            FireDestroy();
+            return;
+        }
+        RemoveTag();
+        OnDamaged.Invoke();
+    }
+
+    private void FireDestroy()
     {
         Camera.main.GetComponent<ShakeEffect>().FireEffect(1f);
         GameObject particle = Instantiate(deathParticlePrefab);

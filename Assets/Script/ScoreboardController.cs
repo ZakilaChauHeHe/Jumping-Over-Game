@@ -15,17 +15,18 @@ public class ScoreboardController : MonoBehaviour
     public void UpdateDisplay()
     {
         string displayText = "Display Error!";
+        int gameScore = dataManager.Score;
 
         switch (dataManager.Gamemode)
         {
             case Gamemode.Time:
-                displayText = "Time: " + Game_Manager.Instance.Score;
+                displayText = "Time: " + gameScore;
                 break;
             case Gamemode.Stage:
-                displayText = "Stage " + Game_Manager.Instance.Score;
+                displayText = "Stage " + gameScore;
                 break;
             case Gamemode.Score:
-                displayText = "Score: " + Game_Manager.Instance.Score;
+                displayText = "Score: " + gameScore;
                 break;
         }
 

@@ -510,12 +510,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 2113372723}
+  GSManager: {fileID: 11400000, guid: 31f3178fbf4f16444aae85cb8282fbe8, type: 2}
   GameBoarder: {fileID: 1796452790}
   SpawnTable:
   - Prefab: {fileID: 524538875547432492, guid: 2c269a8ef52dd1e46964d7e37c90af8a, type: 3}
-    weight: 1
-  - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
     weight: 2
+  - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
+    weight: 4
+  - Prefab: {fileID: 2630651969718963850, guid: bf19e3078b306cc469a41e750fa46956, type: 3}
+    weight: 1
+  - Prefab: {fileID: 7158534001072064833, guid: f9c87a813fe039b42b5bc449a1d1baad, type: 3}
+    weight: 1000
   TimeBetweenSpawn: 1
   BeforeSpawn:
     m_PersistentCalls:
@@ -1023,19 +1028,7 @@ MonoBehaviour:
       m_Calls: []
   OnEnemyKilled:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2113372723}
-        m_TargetAssemblyTypeName: Game_Manager, Assembly-CSharp
-        m_MethodName: UpdateScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   playerProfile:
     Heart: 3
     Speed: 75
@@ -1104,6 +1097,14 @@ PrefabInstance:
     - target: {fileID: 2145248977159851328, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: GSManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 31f3178fbf4f16444aae85cb8282fbe8, type: 2}
+    - target: {fileID: 4089599123116129443, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
+      propertyPath: TransitionInTime
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 8954627220458589674, guid: 2e3347e445dcf4647840fc4fabb6a0ab, type: 3}
       propertyPath: m_Name
@@ -2262,9 +2263,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataManager: {fileID: 11400000, guid: 2f7c771e6d5575e40b5b5a9ef64d1ead, type: 2}
+  GSManager: {fileID: 11400000, guid: 31f3178fbf4f16444aae85cb8282fbe8, type: 2}
   ScoreBoard: {fileID: 1517383176}
   GameoverPanel: {fileID: 2053155960}
-  Disable_Spawning: 0
+  DisableBuff: 1
 --- !u!1001 &5395349039281923950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2275,7 +2277,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4392551592358256095, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
       propertyPath: m_Name
-      value: Ground
+      value: BottomBoarder
       objectReference: {fileID: 0}
     - target: {fileID: 4879139238651838406, guid: 4d649fcbba87ca3409be8b8c94e33de7, type: 3}
       propertyPath: m_LocalPosition.x

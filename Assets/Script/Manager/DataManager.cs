@@ -8,17 +8,26 @@ public class PlayerProfile
     public float Jump_Power = 25f;
     public int AirJump_Charge = 1;
 }
-[CreateAssetMenu(fileName = "DataManagerSO",menuName = "ScriptableObjects/DataManager")]
+[CreateAssetMenu(fileName = "DataManagerSO", menuName = "ScriptableObjects/DataManager")]
 public class DataManager : ScriptableObject
 {
     [Header("Datas")]
     public Gamemode Gamemode;
-    [HideInInspector] public PlayerProfile PlayerProfile;
+    public int Score { get; private set; }
     [SerializeField] private PlayerProfile SourceProfile;
+
+
+    [HideInInspector] public PlayerProfile PlayerProfile;
 
     private void OnEnable()
     {
         ResetPlayerProfile();
+        ResetGameData();
+    }
+
+    public void AddScore(int addScore)
+    {
+        Score += addScore;
     }
 
     public void ResetPlayerProfile()
@@ -27,5 +36,10 @@ public class DataManager : ScriptableObject
         PlayerProfile.Speed = SourceProfile.Speed;
         PlayerProfile.Jump_Power = SourceProfile.Jump_Power;
         PlayerProfile.AirJump_Charge = SourceProfile.AirJump_Charge;
+    }
+
+    private void ResetGameData()
+    {
+        Score = 0;
     }
 }

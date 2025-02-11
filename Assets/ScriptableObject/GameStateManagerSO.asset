@@ -9,17 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93f9378ee808e548b474539cbeb18da, type: 3}
-  m_Name: DataManagerSO
+  m_Script: {fileID: 11500000, guid: 3eef819317999684fb1f062cbe1a5b80, type: 3}
+  m_Name: GameStateManagerSO
   m_EditorClassIdentifier: 
-  Gamemode: 2
-  SourceProfile:
-    Heart: 3
-    Speed: 7.5
-    Jump_Power: 25
-    AirJump_Charge: 1
-  PlayerProfile:
-    Heart: 1
-    Speed: 7.5
-    Jump_Power: 25
-    AirJump_Charge: 1
+  CurrentState: 0
