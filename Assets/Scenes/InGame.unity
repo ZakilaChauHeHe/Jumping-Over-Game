@@ -515,16 +515,16 @@ MonoBehaviour:
   SpawnTable:
   - Prefab: {fileID: 524538875547432492, guid: 2c269a8ef52dd1e46964d7e37c90af8a, type: 3}
     InitWeight: 0
-    ScaleWeight: 0
+    ScaleWeight: 2
   - Prefab: {fileID: 753170793687633465, guid: 6773b493b0f01934da0c34fc957d3f2d, type: 3}
-    InitWeight: 0
+    InitWeight: 3
     ScaleWeight: 0
   - Prefab: {fileID: 2630651969718963850, guid: bf19e3078b306cc469a41e750fa46956, type: 3}
     InitWeight: 0
-    ScaleWeight: 0
+    ScaleWeight: 4
   - Prefab: {fileID: 7158534001072064833, guid: f9c87a813fe039b42b5bc449a1d1baad, type: 3}
     InitWeight: 0
-    ScaleWeight: 0
+    ScaleWeight: 1
   TimeBetweenSpawn: 1
   BeforeSpawn:
     m_PersistentCalls:
